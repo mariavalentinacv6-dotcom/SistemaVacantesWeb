@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Vacantes</title>
+</head>
+<body>
+
+    <h1>Sistema de Gestión de Vacantes</h1>
+
+    <h2>Bienvenido</h2>
+
+    <p>Aplicación desarrollada con Java y Spring Boot.</p>
+
+    <h3>Gestión de vacantes</h3>
+
+    <p>Selecciona la operación que deseas realizar:</p>
+
+    <a th:href="@{/vacantes}">Consultar vacantes</a>
+
+    <br><br>
+
+    <a th:href="@{/vacantes/nueva}">Registrar nueva vacante</a>
+
+</body>
+</html>

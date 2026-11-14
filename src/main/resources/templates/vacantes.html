@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de vacantes</title>
+</head>
+<body>
+
+    <h1>Vacantes registradas</h1>
+
+    <p th:if="${mensaje}" th:text="${mensaje}"></p>
+
+    <a th:href="@{/vacantes/nueva}">Registrar nueva vacante</a>
+
+    <br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cargo</th>
+                <th>Empresa</th>
+                <th>Descripción</th>
+                <th>Salario</th>
+                <th>Ubicación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="vacante : ${vacantes}">
+                <td th:text="${vacante.id}"></td>
+                <td th:text="${vacante.cargo}"></td>
+                <td th:text="${vacante.empresa}"></td>
+                <td th:text="${vacante.descripcion}"></td>
+                <td th:text="${vacante.salario}"></td>
+                <td th:text="${vacante.ubicacion}"></td>
+                <td>
+                    <a th:href="@{/vacantes/eliminar/{id}(id=${vacante.id})}"
+                       onclick="return confirm('¿Deseas eliminar esta vacante?')">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(vacantes)}">
+                <td colspan="7">No hay vacantes registradas.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/}">Volver al inicio</a>
+
+</body>
+</html>

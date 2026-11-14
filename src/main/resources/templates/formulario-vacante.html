@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar vacante</title>
+</head>
+<body>
+
+    <h1>Registrar nueva vacante</h1>
+
+    <form th:action="@{/vacantes/guardar}" th:object="${vacante}" method="post">
+
+        <label for="titulo">Título de la vacante:</label>
+        <input type="text" id="titulo" th:field="*{titulo}" required>
+        <br><br>
+
+        <label for="cargo">Cargo:</label>
+        <input type="text" id="cargo" th:field="*{cargo}" required>
+        <br><br>
+
+        <label for="empresa">Empresa:</label>
+        <input type="text" id="empresa" th:field="*{empresa}" required>
+        <br><br>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" th:field="*{descripcion}"></textarea>
+        <br><br>
+
+        <label for="salario">Salario:</label>
+        <input type="text" id="salario" th:field="*{salario}">
+        <br><br>
+
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" id="ubicacion" th:field="*{ubicacion}">
+        <br><br>
+
+        <button type="submit">Guardar vacante</button>
+
+    </form>
+
+    <br>
+    <a th:href="@{/vacantes}">Volver a las vacantes</a>
+
+</body>
+</html>
