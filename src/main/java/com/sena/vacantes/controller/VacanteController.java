@@ -42,19 +42,38 @@ public class VacanteController {
         return "formulario-vacante";
     }
 
-    // Guardar una nueva vacante en la base de datos.
+    // Guardar una nueva vacante después de validar sus datos.
     @PostMapping("/vacantes/guardar")
     public String guardarVacante(
             @Valid Vacante vacante,
             BindingResult resultado,
             RedirectAttributes atributos) {
 
+        // Validación adicional del salario en el servidor.
+        String salario = vacante.getSalario();
+
+        if (salario != null && !salario.isBlank()
+                && !salario.matches("[0-9]{1,10}([.,][0-9]{1,2})?")) {
+
+            resultado.rejectValue(
+                    "salario",
+                    "error.salario",
+                    "El salario debe contener únicamente números y hasta dos decimales."
+            );
+        }
+
+        // Si existen errores, regresar al formulario.
         if (resultado.hasErrors()) {
             return "formulario-vacante";
         }
 
+        // Guardar la vacante cuando todas las validaciones sean correctas.
         vacanteRepository.save(vacante);
-        atributos.addFlashAttribute("mensaje", "Vacante registrada correctamente.");
+
+        atributos.addFlashAttribute(
+                "mensaje",
+                "Vacante registrada correctamente."
+        );
 
         return "redirect:/vacantes";
     }
@@ -67,7 +86,10 @@ public class VacanteController {
 
         if (vacanteRepository.existsById(id)) {
             vacanteRepository.deleteById(id);
-            atributos.addFlashAttribute("mensaje", "Vacante eliminada correctamente.");
+            atributos.addFlashAttribute(
+                    "mensaje",
+                    "Vacante eliminada correctamente."
+            );
         }
 
         return "redirect:/vacantes";

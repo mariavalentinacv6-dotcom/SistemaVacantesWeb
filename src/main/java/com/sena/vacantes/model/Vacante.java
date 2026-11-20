@@ -7,7 +7,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
+/**
+ * Representa una vacante laboral del sistema.
+ * Incluye validaciones para los datos registrados.
+ */
 @Entity
 @Table(name = "vacantes")
 public class Vacante {
@@ -16,17 +22,28 @@ public class Vacante {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El cargo es obligatorio")
+    @NotBlank(message = "El cargo es obligatorio.")
+    @Size(max = 255, message = "El cargo no puede superar los 255 caracteres.")
     private String cargo;
 
-    @NotBlank(message = "El titulo es obligatorio")
+    @NotBlank(message = "El título es obligatorio.")
+    @Size(max = 100, message = "El título no puede superar los 100 caracteres.")
     private String titulo;
 
-    @NotBlank(message = "La empresa es obligatoria")
+    @NotBlank(message = "La empresa es obligatoria.")
+    @Size(max = 255, message = "La empresa no puede superar los 255 caracteres.")
     private String empresa;
 
+    @Size(max = 255, message = "La descripción no puede superar los 255 caracteres.")
     private String descripcion;
+
+    @Pattern(
+        regexp = "^$|^[0-9]{1,10}([.,][0-9]{1,2})?$",
+        message = "El salario debe contener solo números y hasta dos decimales."
+    )
     private String salario;
+
+    @Size(max = 255, message = "La ubicación no puede superar los 255 caracteres.")
     private String ubicacion;
 
     public Vacante() {

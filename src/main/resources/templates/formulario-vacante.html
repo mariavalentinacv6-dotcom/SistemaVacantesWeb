@@ -1,39 +1,91 @@
 
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar vacante</title>
 </head>
+
 <body>
 
     <h1>Registrar nueva vacante</h1>
 
-    <form th:action="@{/vacantes/guardar}" th:object="${vacante}" method="post">
+    <form th:action="@{/vacantes/guardar}"
+          th:object="${vacante}"
+          method="post">
 
         <label for="titulo">Título de la vacante:</label>
-        <input type="text" id="titulo" th:field="*{titulo}" required>
+        <input type="text"
+               id="titulo"
+               th:field="*{titulo}"
+               maxlength="100"
+               required>
+
+        <div th:if="${#fields.hasErrors('titulo')}"
+             th:errors="*{titulo}"></div>
+
         <br><br>
 
         <label for="cargo">Cargo:</label>
-        <input type="text" id="cargo" th:field="*{cargo}" required>
+        <input type="text"
+               id="cargo"
+               th:field="*{cargo}"
+               maxlength="255"
+               required>
+
+        <div th:if="${#fields.hasErrors('cargo')}"
+             th:errors="*{cargo}"></div>
+
         <br><br>
 
         <label for="empresa">Empresa:</label>
-        <input type="text" id="empresa" th:field="*{empresa}" required>
+        <input type="text"
+               id="empresa"
+               th:field="*{empresa}"
+               maxlength="255"
+               required>
+
+        <div th:if="${#fields.hasErrors('empresa')}"
+             th:errors="*{empresa}"></div>
+
         <br><br>
 
         <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion" th:field="*{descripcion}"></textarea>
+        <textarea id="descripcion"
+                  th:field="*{descripcion}"
+                  maxlength="255"></textarea>
+
+        <div th:if="${#fields.hasErrors('descripcion')}"
+             th:errors="*{descripcion}"></div>
+
         <br><br>
 
         <label for="salario">Salario:</label>
-        <input type="text" id="salario" th:field="*{salario}">
+        <input type="text"
+               id="salario"
+               th:field="*{salario}"
+               maxlength="13"
+               pattern="[0-9]{1,10}([.,][0-9]{1,2})?"
+               title="Ingrese únicamente números y hasta dos decimales."
+               inputmode="decimal"
+               placeholder="Ejemplo: 1500000">
+
+        <div th:if="${#fields.hasErrors('salario')}"
+             th:errors="*{salario}"></div>
+
         <br><br>
 
         <label for="ubicacion">Ubicación:</label>
-        <input type="text" id="ubicacion" th:field="*{ubicacion}">
+        <input type="text"
+               id="ubicacion"
+               th:field="*{ubicacion}"
+               maxlength="255">
+
+        <div th:if="${#fields.hasErrors('ubicacion')}"
+             th:errors="*{ubicacion}"></div>
+
         <br><br>
 
         <button type="submit">Guardar vacante</button>
@@ -41,6 +93,7 @@
     </form>
 
     <br>
+
     <a th:href="@{/vacantes}">Volver a las vacantes</a>
 
 </body>
