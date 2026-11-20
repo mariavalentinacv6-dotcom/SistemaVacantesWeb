@@ -1,0 +1,96 @@
+
+/* =========================================================
+   CONFIGURACIÓN GLOBAL DEL FRONTEND
+   Sistema de Gestión de Vacantes
+   ========================================================= */
+
+:root {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #26364a;
+    background: #f5f7fb;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    font-weight: 400;
+}
+
+/* Eliminar márgenes predeterminados del navegador */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuración del documento */
+
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
+}
+
+html {
+    min-width: 320px;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+/* Elementos de texto */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.25;
+    font-weight: 700;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* Enlaces */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Botones */
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Campos de formulario */
+
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: 14px;
+}
+
+/* Selección de texto */
+
+::selection {
+    background: #245b91;
+    color: #ffffff;
+}
